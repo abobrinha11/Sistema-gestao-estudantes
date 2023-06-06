@@ -45,7 +45,8 @@ namespace sistema_gestao_estudantes
 
             if (tabela.Rows.Count > 0)
             {
-                MessageBox.Show("SIM");
+                //MessageBox.Show("SIM");
+                this.DialogResult= DialogResult.OK;
             }
             else 
             {
