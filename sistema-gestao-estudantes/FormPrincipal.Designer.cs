@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.eSTUDANTEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inserirEstudanteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,13 +65,15 @@
             this.estatísticasToolStripMenuItem,
             this.gerenciarEstudantesToolStripMenuItem,
             this.imprimirToolStripMenuItem});
+            this.eSTUDANTEToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("eSTUDANTEToolStripMenuItem.Image")));
             this.eSTUDANTEToolStripMenuItem.Name = "eSTUDANTEToolStripMenuItem";
-            this.eSTUDANTEToolStripMenuItem.Size = new System.Drawing.Size(82, 20);
+            this.eSTUDANTEToolStripMenuItem.Size = new System.Drawing.Size(98, 20);
             this.eSTUDANTEToolStripMenuItem.Text = "ESTUDANTE";
             // 
             // inserirEstudanteToolStripMenuItem
             // 
             this.inserirEstudanteToolStripMenuItem.BackColor = System.Drawing.Color.HotPink;
+            this.inserirEstudanteToolStripMenuItem.Image = global::sistema_gestao_estudantes.Properties.Resources.sombrero_icone;
             this.inserirEstudanteToolStripMenuItem.Name = "inserirEstudanteToolStripMenuItem";
             this.inserirEstudanteToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.inserirEstudanteToolStripMenuItem.Text = "Inserir Estudante";
@@ -136,7 +139,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormPrincipal";
             this.Text = "SGA - Início";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
