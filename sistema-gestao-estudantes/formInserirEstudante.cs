@@ -46,7 +46,7 @@ namespace sistema_gestao_estudantes
             string sobrenome = textBoxSobrenome.Text;
             DateTime nascimento = dateTimePickerNascimento.Value;
             string telefone = textBoxTelefone.Text;
-            string endereo = textBoxEndereco.Text;
+            string endereco = textBoxEndereco.Text;
             string genero = "Feminino";
 
             if (radioButtonMasculino.Checked)
@@ -66,7 +66,13 @@ namespace sistema_gestao_estudantes
             }
             else if (verificar())
             {
-                
+                pictureBoxFoto.Image.Save(foto, pictureBoxFoto.Image.RawFormat);
+                if (estudantes.inserirestudante(nome,sobrenome,nascimento,telefone,genero,endereco,foto))
+                {
+                    MessageBox.Show("Novo estudante foi cadasrado",
+                    "Sucesso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
