@@ -56,7 +56,7 @@ namespace sistema_gestao_estudantes
             MemoryStream foto = new MemoryStream();
 
             int anoDeNascimento = dateTimePickerNascimento.Value.Year;
-            int  anoAtual = DateTime.Now.Year;
+            int anoAtual = DateTime.Now.Year;
             if ((anoAtual - anoDeNascimento) < 10 ||
                 (anoAtual - anoDeNascimento) < 100)
             {
@@ -67,12 +67,22 @@ namespace sistema_gestao_estudantes
             else if (verificar())
             {
                 pictureBoxFoto.Image.Save(foto, pictureBoxFoto.Image.RawFormat);
-                if (estudantes.inserirestudante(nome,sobrenome,nascimento,telefone,genero,endereco,foto))
+                if (estudantes.inserirestudante(nome, sobrenome, nascimento, telefone, genero, endereco, foto))
                 {
                     MessageBox.Show("Novo estudante foi cadasrado",
                     "Sucesso",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+                else
+                {
+                    MessageBox.Show("Erro", "Inserir Estudante",
+                        MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Campos não preenchidos",
+                    "Inserir Estudantes", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 

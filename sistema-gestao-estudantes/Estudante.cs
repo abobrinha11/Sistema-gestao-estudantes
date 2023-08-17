@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace sistema_gestao_estudantes
         public bool inserirestudante(string nome, string sobrenome, DateTime nascimento, 
         string telefone, string genero, string endereco, MemoryStream foto)
         {
-            MySqlCommand comando = new MySqlCommand("INSERT INTO `estudantes`(`nome`, `sobrenome`, `nascimento`, `genero`, `telefone`, `endereco`, `foto`) VALUES ('@nm','@sbn','@ns','@gen','@tel','@end','@fot')",bancodedados.getConexao);
+            MySqlCommand comando = new MySqlCommand("INSERT INTO `estudantes`(`nome`, `sobrenome`, `nascimento`, `genero`, `telefone`, `endereco`, `foto`) VALUES (@nm,@sbn,@ns,@gen,@tel,@end,@fot)",bancodedados.getConexao);
             
             comando.Parameters.Add("@nm", MySqlDbType.VarChar).Value = nome;
             comando.Parameters.Add("@sbn", MySqlDbType.VarChar).Value = sobrenome;
@@ -40,8 +41,17 @@ namespace sistema_gestao_estudantes
                 bancodedados.fecharConexao();
                 return false;
             }
+    
+        }
 
-            
+        public DataTable getEstudantes(MySqlCommand comando)
+        {
+            comando.Connection = bancodedados.getConexao;
+            MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
+            DataTable tabela = new DataTable();
+            adaptador.Fill(tabela);
+
+            return tabela;
         }
     }
 }

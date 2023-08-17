@@ -85,6 +85,7 @@
             this.listaEstudanteToolStripMenuItem.Name = "listaEstudanteToolStripMenuItem";
             this.listaEstudanteToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.listaEstudanteToolStripMenuItem.Text = "Listar Estudantes";
+            this.listaEstudanteToolStripMenuItem.Click += new System.EventHandler(this.listaEstudanteToolStripMenuItem_Click);
             // 
             // editarRemoverToolStripMenuItem
             // 
