@@ -42,7 +42,7 @@ namespace sistema_gestao_estudantes
 
         private void dataGridViewLista_DoubleClick(object sender, EventArgs e)
         {
-            //
+            // abre o estudante selecionado
         }
 
         private void ButtonAtualizar_Click(object sender, EventArgs e)
