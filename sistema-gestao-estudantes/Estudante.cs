@@ -44,10 +44,12 @@ namespace sistema_gestao_estudantes
     
         }
 
-        public bool atualizarestudante(string nome, string sobrenome, DateTime nascimento,
+        public bool atualizarestudante(int id, string nome, string sobrenome, DateTime nascimento,
         string telefone, string genero, string endereco, MemoryStream foto)
         {
             MySqlCommand comando = new MySqlCommand("UPDATE `estudantes` SET `nome`= @nm,`sobrenome`= @sbn,`nascimento`= @nsc,`genero`= @gen,`telefone`= @tel,`endereco`= @end,`foto`= @ft WHERE `id` = @id", bancodedados.getConexao);
+
+            comando.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
             comando.Parameters.Add("@nm", MySqlDbType.VarChar).Value = nome;
             comando.Parameters.Add("@sbn", MySqlDbType.VarChar).Value = sobrenome;
             comando.Parameters.Add("@ns", MySqlDbType.Date).Value = nascimento;
@@ -70,8 +72,27 @@ namespace sistema_gestao_estudantes
             }
 
         }
+        // deletar o estudante
+        public bool deletarEstudantes(int id)
+        {
+            MySqlCommand comando = new MySqlCommand("DELETE FROM `estudantes` WHERE `Id` = @studentid");
+            comando.Parameters.Add("@studentsid", MySqlDbType.Int32).Value = id;
 
-        public DataTable getEstudantes(MySqlCommand comando)
+            bancodedados.abrirConexao();
+
+            if (comando.ExecuteNonQuery() == 1)
+            {
+                bancodedados.fecharConexao();
+                return true;
+            }
+            else
+            {
+                bancodedados.fecharConexao();
+                return false;
+            }
+        }
+
+        public DataTable pegarEstudantes(MySqlCommand comando)
         {
             comando.Connection = bancodedados.getConexao;
             MySqlDataAdapter adaptador = new MySqlDataAdapter(comando);
