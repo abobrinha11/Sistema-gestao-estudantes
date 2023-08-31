@@ -32,7 +32,8 @@ namespace sistema_gestao_estudantes
             if (abrirArquivo.ShowDialog() == DialogResult.OK)
             {
                 pictureBoxFoto.Image = Image.FromFile(abrirArquivo.FileName);
-            }        }
+            }        
+        }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
