@@ -251,6 +251,7 @@
             this.buttonConfirmar.TabIndex = 23;
             this.buttonConfirmar.Text = "Confirmar";
             this.buttonConfirmar.UseVisualStyleBackColor = false;
+            this.buttonConfirmar.Click += new System.EventHandler(this.buttonConfirmar_Click);
             // 
             // buttonRemover
             // 
@@ -301,7 +302,7 @@
             this.Controls.Add(this.buttonEnviarFoto);
             this.Controls.Add(this.label1);
             this.Name = "AtualizarDeletarEstudante";
-            this.Text = "AtualizarDeletarEstudante";
+            this.Text = "SGA - Editar Estudantes";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxFoto)).EndInit();

@@ -105,6 +105,7 @@
             this.dateTimePickerNascimento.Name = "dateTimePickerNascimento";
             this.dateTimePickerNascimento.Size = new System.Drawing.Size(212, 20);
             this.dateTimePickerNascimento.TabIndex = 5;
+            this.dateTimePickerNascimento.ValueChanged += new System.EventHandler(this.dateTimePickerNascimento_ValueChanged);
             // 
             // label4
             // 

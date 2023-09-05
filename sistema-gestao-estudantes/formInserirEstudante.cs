@@ -59,7 +59,7 @@ namespace sistema_gestao_estudantes
             int anoDeNascimento = dateTimePickerNascimento.Value.Year;
             int anoAtual = DateTime.Now.Year;
             if ((anoAtual - anoDeNascimento) < 10 ||
-                (anoAtual - anoDeNascimento) < 100)
+                (anoAtual - anoDeNascimento) > 100)
             {
                 MessageBox.Show("a idade precisa ser de 10 e 100 anos.",
                     "Idade inválida",
@@ -107,6 +107,11 @@ namespace sistema_gestao_estudantes
                 return true;
             }
             
+        }
+
+        private void dateTimePickerNascimento_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
