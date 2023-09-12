@@ -13,6 +13,8 @@ namespace sistema_gestao_estudantes
 {
     public partial class AtualizarDeletarEstudante : Form
     {
+        //Cria uma instancia de um estudante
+        Estudante estudante = new Estudante();
         public AtualizarDeletarEstudante()
         {
             InitializeComponent();
@@ -107,6 +109,12 @@ namespace sistema_gestao_estudantes
                 return true;
             }
 
+        }
+
+        private void buttonRemover_Click(object sender, EventArgs e)
+        {
+            //Remove o studante selecionado
+            int id = Convert.ToInt32(textBoxID.Text);
         }
     }
 }
