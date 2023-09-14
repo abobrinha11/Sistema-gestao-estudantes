@@ -275,6 +275,7 @@
             this.buttonProcurar.TabIndex = 25;
             this.buttonProcurar.Text = "Procurar";
             this.buttonProcurar.UseVisualStyleBackColor = false;
+            this.buttonProcurar.Click += new System.EventHandler(this.buttonProcurar_Click);
             // 
             // AtualizarDeletarEstudante
             // 

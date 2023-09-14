@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -115,6 +116,68 @@ namespace sistema_gestao_estudantes
         {
             //Remove o studante selecionado
             int id = Convert.ToInt32(textBoxID.Text);
+
+            //Exibe uma caixa de dialogo perguntando se realmente quer remover o estuante
+            if (MessageBox.Show("Tem certeza que quer remover o estudante", "Remover Estudante", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (estudante.deletarEstudantes(id))
+                {
+                    // Parâmnetro: mensagem, titulo, 
+                    MessageBox.Show("Estudante Removido", "Remover Estudante",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //limpa os campos de textos
+                    textBoxID.Text = ""; //obs: dará errp se tentar apagar o mesmo estudante 2x
+                    textBoxNome.Text = "";
+                    textBoxSobrenome.Text = "";
+                    textBoxTelefone.Text = "";
+                    textBoxEndereco.Text = "";
+                    dateTimePickerNascimento.Value = DateTime.Now;
+                    pictureBoxFoto.Image = null;
+                }
+                else
+                {
+                    MessageBox.Show("Estudante não removido", "Remover Estudante", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+            }
+
+        }
+
+        private void buttonProcurar_Click(object sender, EventArgs e)
+        {
+            // Procura estudante pela ID.
+            int Id = Convert.ToInt32(textBoxID.Text);
+            MySqlCommand comando = new MySqlCommand("SELECT `Id`,`nome`,`sobrenome`,`nascimento`,`genero`,`telefone`,`endereco`,`foto` FROM `estudantes` WHERE `Id` =" + Id);
+
+            DataTable tabela = estudante.pegarEstudantes(comando);
+
+            if (tabela.Rows.Count > 0)
+            {
+                textBoxNome.Text = tabela.Rows[0]["nome"].ToString();
+                textBoxSobrenome.Text = tabela.Rows[0]["sobrenome"].ToString();
+                textBoxTelefone.Text = tabela.Rows[0]["telefone"].ToString();
+                textBoxEndereco.Text = tabela.Rows[0]["endereco"].ToString();
+
+                dateTimePickerNascimento.Value = (DateTime)tabela.Rows[0]["nascimento"];
+
+                if (tabela.Rows[0]["genero"].ToString() == "Feminino")
+                {
+                    radioButtonFeminino.Checked = true;
+                }
+                else
+                {
+                    radioButtonMasculino.Checked = true;
+                }
+
+                // foto do estudante.
+                byte[] fotoDaTabela = (byte[]) tabela.Rows[0]["foto"];
+                MemoryStream fotoDaInterface = new MemoryStream(fotoDaTabela);
+                pictureBoxFoto.Image = Image.FromStream(fotoDaInterface);
+                
+            }
         }
     }
 }
